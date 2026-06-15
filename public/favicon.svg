@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <circle cx="40" cy="40" r="40" fill="#0F4C25"/>
+  <!-- V shape – white background circle -->
+  <circle cx="40" cy="40" r="36" fill="white"/>
+  <!-- V dark green base -->
+  <path d="M16 18 L40 60 L64 18 L56 18 L40 48 L24 18 Z" fill="#0F4C25"/>
+  <!-- V gold middle -->
+  <path d="M22 18 L40 52 L58 18 L52 18 L40 44 L28 18 Z" fill="#F2C84B"/>
+  <!-- V leaf green top -->
+  <path d="M28 18 L40 46 L52 18 L46 18 L40 38 L34 18 Z" fill="#1A7A3C"/>
+</svg>

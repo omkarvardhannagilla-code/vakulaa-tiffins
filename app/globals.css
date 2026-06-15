@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Custom Properties ─────────────────────────────────────────────── */
+:root {
+  --brand-forest: #0F4C25;
+  --brand-leaf:   #1A7A3C;
+  --brand-lime:   #8BC34A;
+  --brand-gold:   #F2C84B;
+  --brand-amber:  #E6A817;
+  --brand-mist:   #E8F5E6;
+  --brand-bark:   #5C3D11;
+  --brand-cream:  #FDFBF5;
+  --brand-charcoal: #1A1A1A;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  background-color: var(--brand-cream);
+  color: var(--brand-charcoal);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Custom Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--brand-mist); }
+::-webkit-scrollbar-thumb { background: var(--brand-leaf); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-forest); }
+
+/* ── Selection ─────────────────────────────────────────────────────── */
+::selection {
+  background: var(--brand-gold);
+  color: var(--brand-forest);
+}
+
+/* ── Typography ────────────────────────────────────────────────────── */
+h1, h2, h3 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ── Leaf divider ──────────────────────────────────────────────────── */
+.leaf-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-forest), var(--brand-gold));
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* ── Glass effect ──────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-dark {
+  background: rgba(15, 76, 37, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Plate button glow ─────────────────────────────────────────────── */
+.plate-glow {
+  box-shadow: 0 0 0 0 rgba(242, 200, 75, 0.7);
+  animation: plateGlow 2s ease-in-out infinite;
+}
+
+@keyframes plateGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(242, 200, 75, 0); }
+  50%       { box-shadow: 0 0 0 8px rgba(242, 200, 75, 0); }
+}
+
+/* ── Steam animation ───────────────────────────────────────────────── */
+.steam-particle {
+  position: absolute;
+  bottom: 100%;
+  width: 4px;
+  background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+  border-radius: 2px;
+  animation: steamRise 2s ease-in-out infinite;
+}
+
+.steam-particle:nth-child(1) { left: 30%; animation-delay: 0s; height: 18px; }
+.steam-particle:nth-child(2) { left: 50%; animation-delay: 0.4s; height: 24px; }
+.steam-particle:nth-child(3) { left: 70%; animation-delay: 0.8s; height: 16px; }
+
+@keyframes steamRise {
+  0%   { transform: translateY(0) scaleX(1); opacity: 0.8; }
+  50%  { transform: translateY(-12px) scaleX(1.3); opacity: 0.5; }
+  100% { transform: translateY(-24px) scaleX(0.8); opacity: 0; }
+}
+
+/* ── Menu card hover ───────────────────────────────────────────────── */
+.menu-card {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+  will-change: transform;
+}
+.menu-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 32px rgba(15, 76, 37, 0.18);
+}
+
+/* ── Add to Plate button ripple ────────────────────────────────────── */
+.btn-plate {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+.btn-plate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.2);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.btn-plate:hover::after { transform: scaleX(1); }
+.btn-plate:active { transform: scale(0.97); }
+
+/* ── Chatbot ────────────────────────────────────────────────────────── */
+.chatbot-window {
+  box-shadow: 0 24px 64px rgba(0,0,0,0.25), 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.message-bubble-user {
+  background: linear-gradient(135deg, var(--brand-forest) 0%, var(--brand-leaf) 100%);
+  border-radius: 18px 18px 4px 18px;
+}
+
+.message-bubble-ai {
+  background: white;
+  border-radius: 18px 18px 18px 4px;
+  border: 1px solid rgba(15, 76, 37, 0.1);
+}
+
+/* ── Voice recording pulse ─────────────────────────────────────────── */
+.voice-pulse {
+  animation: voicePulse 1.2s ease-in-out infinite;
+}
+@keyframes voicePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+  50%       { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
+}
+
+/* ── Status badge ──────────────────────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* ── Order timeline ─────────────────────────────────────────────────── */
+.timeline-step.active .timeline-dot {
+  background-color: var(--brand-forest);
+  box-shadow: 0 0 0 4px rgba(15, 76, 37, 0.2);
+}
+.timeline-step.completed .timeline-dot {
+  background-color: var(--brand-gold);
+}
+.timeline-step.pending .timeline-dot {
+  background-color: #D1D5DB;
+}
+
+/* ── Spinner ─────────────────────────────────────────────────────────── */
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Pattern overlay ────────────────────────────────────────────────── */
+.kolam-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.5' stroke-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3Cline x1='10' y1='30' x2='50' y2='30'/%3E%3Cline x1='30' y1='10' x2='30' y2='50'/%3E%3Cline x1='16' y1='16' x2='44' y2='44'/%3E%3Cline x1='44' y1='16' x2='16' y2='44'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ── Input focus ───────────────────────────────────────────────────── */
+.vakulaa-input {
+  border: 1.5px solid #D1D5DB;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  width: 100%;
+  background: white;
+  font-family: var(--font-dm-sans);
+}
+.vakulaa-input:focus {
+  border-color: var(--brand-forest);
+  box-shadow: 0 0 0 3px rgba(15, 76, 37, 0.12);
+}
+
+/* ── OTP input ─────────────────────────────────────────────────────── */
+.otp-input {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  border: 2px solid #D1D5DB;
+  border-radius: 12px;
+  transition: all 0.2s;
+  font-family: var(--font-dm-sans);
+}
+.otp-input:focus {
+  border-color: var(--brand-forest);
+  box-shadow: 0 0 0 3px rgba(15, 76, 37, 0.15);
+  outline: none;
+}
+.otp-input.filled { border-color: var(--brand-forest); background: var(--brand-mist); }
+
+/* ── Shimmer loading ────────────────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Bottom plate bar (mobile) ─────────────────────────────────────── */
+.plate-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 12px 16px env(safe-area-inset-bottom);
+  background: white;
+  border-top: 1px solid rgba(15, 76, 37, 0.1);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+}
+
+/* ── Admin status colors ────────────────────────────────────────────── */
+.status-pending        { background: #FEF3C7; color: #92400E; }
+.status-accepted       { background: #DBEAFE; color: #1E40AF; }
+.status-preparing      { background: #EDE9FE; color: #5B21B6; }
+.status-out_for_delivery { background: #FFEDD5; color: #9A3412; }
+.status-delivered      { background: #D1FAE5; color: #065F46; }
+.status-rejected       { background: #FEE2E2; color: #991B1B; }

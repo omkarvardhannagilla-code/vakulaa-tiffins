@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /track/
+
+Sitemap: https://vakulaa-tiffins.vercel.app/sitemap.xml
