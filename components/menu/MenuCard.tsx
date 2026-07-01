@@ -50,12 +50,11 @@ export function MenuCard({ item, index = 0 }: MenuCardProps) {
       {/* Image */}
       <div className="relative w-full h-44 bg-brand-mist">
         {!imgError ? (
-          <Image
+          <img
             src={item.imageUrl}
             alt={item.name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover"
             onError={() => setImgError(true)}
           />
         ) : (
